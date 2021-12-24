@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+</head>
+<body>
+    <nav class="container">
+        <ul class="navbar">
+            <li class="navitem">마켓 프로젝트</li>
+            <input class="text-search" type="text" placeholder="검색할 상품을 입력해주세요.">
+            <input class="btn-search" type="button" value="검색">
+
+            <li class="navitem"></li>
+        </ul>
+    </nav>
+    <div class="container mt-5">
+        <div class="mt-5">
+            <div class="popular">인기있는 품목</div>
+        </div>
+        <div class="itembox">
+            <div class="imagebox">
+                <image class="itemimage" src="{{ url_for('uploaded_file', filename='eagle.jpg') }}"></image>
+            </div>
+            <div class="title">제습기 팔아용</div>
+            <div class="price"><b>350,000원</b></div>
+            <div class="address">충북 천안시 서북구 성정동</div>
+            <div class="user">유저1</div>
+        </div>
+    </div>
+</body>
+</html>

@@ -20,13 +20,6 @@ def close_db(e=None):
     if db is not None:
         db.close()
 
-def init_db():
-    db = get_db()
-    with current_app.open_resource('Market.sql') as f:
-        print(f.read().decode('utf8'))
-        db.executescript(f.read().decode('utf8'))
-
-
 def generate_sqlite():
     con = sqlite3.connect("Market.sqlite3")
     with open('Market.sql') as f:

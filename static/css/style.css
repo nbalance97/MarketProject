@@ -1,0 +1,73 @@
+
+.container {
+    width: 1400px;
+    margin: 0 auto;
+}
+
+.itembox {
+    width: 300px;
+}
+
+.mt-5 {
+    margin-top: 50px;
+}
+
+.imagebox {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.itemimage {
+    width: 100%;
+    border-radius: 25px;
+}
+
+.title {
+    text-align: center;
+    margin: 10px 0px 10px 0px;
+}
+
+.address {
+    margin: 0px 10px 0px 10px;
+}
+
+.user {
+    margin: 0px 10px 0px 10px;
+}
+
+.price {
+    margin: 0px 10px 0px 10px;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    list-style-type: none;
+}
+
+.navitem {
+    display: table-cell;
+    font-size:32px;
+    margin: 0px 10px 0px 10px;
+}
+
+.text-search {
+    margin-left: 10px;
+    margin-right: 10px;
+    width: 20%;
+    height: 32px;
+}
+
+.btn-search {
+    margin-left: 5px;
+    margin-right: 10px;
+    width: 5%;
+    height: 38px;
+}
+
+.popular {
+    font-size: 64px;
+    text-align: center;
+    margin-bottom: 45px;
+}

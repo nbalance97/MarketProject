@@ -12,5 +12,6 @@ CREATE TABLE ITEMPOST (
     title TEXT NOT NULL,
     contents TEXT NOT NULL,
     author_id INTEGER NOT NULL,
+    price INTEGER NOT NULL,
     FOREIGN KEY (author_id) REFERENCES USER(id)
 );
