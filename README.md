@@ -11,23 +11,24 @@
 2. ItemPost
     - 게시된 물건명, 내용, 저자 정보 저장
 
-``` SQL
-DROP TABLE IF EXISTS USER;
-DROP TABLE IF EXISTS GOODS;
+- Flask의 SQLAlchemy 활용하여 ORM 설정
 
-CREATE TABLE USER (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    username TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL
-);
+### Model.py
+``` python
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(80), unique=True, nullable=False)
+    password = db.Column(db.String(120), unique=True, nullable=False)
 
-CREATE TABLE ITEMPOST (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    title TEXT NOT NULL,
-    contents TEXT NOT NULL,
-    author_id INTEGER NOT NULL,
-    FOREIGN KEY (author_id) REFERENCES USER(id)
-);
+    def __repr__(self):
+        return '<User %r>' % self.username
+
+class ItemPost(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(80), nullable=False)
+    contents = db.Column(db.String(80), nullable=False)
+    price = db.Column(db.Integer, nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 ```
 
 # 구현사항 작성
