@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<head>
+
+</head>
+<body>
+    <form method="POST" action="{{ url_for('createItem') }}">
+        제목 : <input type="text" name="title">
+        가격 : <input type="text" name="price">
+        주소 : <input type="text" name="address">
+        내용 : <input type="text" name="contents">
+        <input type="submit" value="제출하기">
+    </form>
+</body>
+</html>

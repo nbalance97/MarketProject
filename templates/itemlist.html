@@ -23,7 +23,11 @@
         {% for post in posts %}
             <div class="itembox">
                 <div class="imagebox">
-                    <image class="itemimage" src="{{ url_for('uploaded_file', filename=post.image_name) }}"></image>
+                    {% if post.image_name %}
+                        <image class="itemimage" src="{{ url_for('uploaded_file', filename=post.image_name) }}"></image>
+                    {% else %}
+                        <image class="itemimage" src="{{ url_for('uploaded_file', filename='eagle.jpg') }}"></image>
+                    {% endif %}
                 </div>
                 <div class="title">{{ post.title }}</div>
                 <div class="price"><b>{{ post.price }}원</b></div>
