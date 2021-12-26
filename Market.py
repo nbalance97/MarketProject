@@ -9,7 +9,8 @@ db.metadata.clear()
 
 @app.route('/')
 def index():
-    return render_template('itemlist.html')
+    from Model import Post
+    return render_template('itemlist.html', posts=Post.query.all())
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):

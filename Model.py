@@ -16,4 +16,6 @@ class Post(db.Model):
     price = db.Column(db.Integer, nullable=False)
     image_name = db.Column(db.String(80), nullable=True)
     author_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    author = db.relationship(User, foreign_keys=author_id, post_update=True)
+
 

@@ -10,9 +10,6 @@ def init_data():
     user = User(username='byunghoon', password='1234')
     db.session.add(user)
     db.session.commit()
-
-    user_id = User.query.filter_by(username = 'byunghoon').first_or_404()
-    print(user_id)
     db.session.add(Post(
         title='제습기 팔아용',
         contents='안쓰는 제습기 팝니다',
