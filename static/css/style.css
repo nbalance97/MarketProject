@@ -4,12 +4,27 @@
     margin: 0 auto;
 }
 
+.row {
+    display: inline;
+}
+
+.text-right {
+    text-align: right;
+}
+
 .itembox {
+    display: inline-block;
     width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .mt-5 {
     margin-top: 50px;
+}
+
+.mb-5 {
+    margin-bottom: 50px;
 }
 
 .imagebox {
@@ -28,15 +43,15 @@
 }
 
 .address {
-    margin: 0px 10px 0px 10px;
+    margin: 5px 10px 0px 10px;
 }
 
 .user {
-    margin: 0px 10px 0px 10px;
+    margin: 5px 10px 0px 10px;
 }
 
 .price {
-    margin: 0px 10px 0px 10px;
+    margin: 5px 10px 0px 10px;
 }
 
 .navbar {

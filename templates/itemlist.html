@@ -12,29 +12,34 @@
             <li class="navitem">마켓 프로젝트</li>
             <input class="text-search" type="text" placeholder="검색할 상품을 입력해주세요.">
             <input class="btn-search" type="button" value="검색">
-
             <li class="navitem"></li>
         </ul>
     </nav>
+
     <div class="container mt-5">
         <div class="mt-5">
             <div class="popular">인기있는 품목</div>
         </div>
-        {% for post in posts %}
-            <div class="itembox">
-                <div class="imagebox">
-                    {% if post.image_name %}
-                        <image class="itemimage" src="{{ url_for('uploaded_file', filename=post.image_name) }}"></image>
-                    {% else %}
-                        <image class="itemimage" src="{{ url_for('uploaded_file', filename='eagle.jpg') }}"></image>
-                    {% endif %}
+        <div class="mt-5 mb-5 text-right">
+            <a class="btn-enroll" href="{{ url_for('item_create') }}">상품 등록하기</a>
+        </div>
+        <div class="items">
+            {% for post in posts %}
+                <div class="itembox">
+                    <div class="imagebox">
+                        {% if post.image_name %}
+                            <image class="itemimage" src="{{ url_for('uploaded_file', filename=post.image_name) }}"></image>
+                        {% else %}
+                            <image class="itemimage" src="{{ url_for('uploaded_file', filename='eagle.jpg') }}"></image>
+                        {% endif %}
+                    </div>
+                    <div class="title">{{ post.title }}</div>
+                    <div class="price"><b>{{ post.price }}원</b></div>
+                    <div class="address">{{ post.address }}</div>
+                    <div class="user">{{ post.author.username }} 님</div>
                 </div>
-                <div class="title">{{ post.title }}</div>
-                <div class="price"><b>{{ post.price }}원</b></div>
-                <div class="address">{{ post.address }}</div>
-                <div class="user">{{ post.author.username }} 님</div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

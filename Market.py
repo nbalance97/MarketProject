@@ -32,7 +32,7 @@ def item_create():
             author_id=user_id
         ))
         db.session.commit()
-        return render_template('itemlist.html')
+        return render_template('itemlist.html', posts=Post.query.all())
     else:
         return render_template('itemadd.html')
 
