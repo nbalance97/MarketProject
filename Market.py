@@ -1,3 +1,5 @@
+import json
+
 from flask import Flask, render_template, send_from_directory, request
 from flask_sqlalchemy import SQLAlchemy
 
@@ -13,8 +15,8 @@ def index():
     from Model import Post
     return render_template('itemlist.html', posts=Post.query.all())
 
-@app.route('/item', methods=['GET', 'POST'])
-def createItem():
+@app.route('/create', methods=['GET', 'POST'])
+def item_create():
     from Model import Post
     if request.method == 'POST':
         title = request.form['title']
@@ -33,6 +35,19 @@ def createItem():
         return render_template('itemlist.html')
     else:
         return render_template('itemadd.html')
+
+@app.route('/item/<int:itemnumber>', methods=['GET', 'DELETE', 'UPDATE'])
+def item_detail(itemnumber):
+    from Model import Post
+    target_post = Post.query.get(itemnumber)
+
+    if request.method == 'DELETE':
+        db.session.delete(target_post)
+        db.session.commit()
+        return json.dumps({'success':True}), 200, {'ContentType': 'application/json'}
+        
+
+
 
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
