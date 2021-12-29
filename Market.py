@@ -45,6 +45,7 @@ def item_detail(itemnumber):
         db.session.delete(target_post)
         db.session.commit()
         return json.dumps({'success':True}), 200, {'ContentType': 'application/json'}
+
         
 
 
