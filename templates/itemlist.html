@@ -14,26 +14,26 @@
 
     <div class="container mt-5">
         <div class="mt-5">
-            <div class="popular">인기있는 품목</div>
+            <div class="text-center fs-1">인기있는 품목</div>
         </div>
-        <div class="mt-5 mb-5 text-right">
-            <a class="btn-enroll" href="{{ url_for('item_create') }}">상품 등록하기</a>
+        <div class="mt-5 mb-5 text-end">
+            <a class="btn btn-outline-primary" href="{{ url_for('item_create') }}">상품 등록하기</a>
         </div>
-        <div class="items">
+        <div class="d-flex">
             {% for post in posts %}
-                <div class="itembox">
-                    <div class="imagebox">
+                <div class="card m-2" style="width: 20rem;">
+                    <div class="card-body">
                         {% if post.image_name %}
-                            <image class="itemimage" src="{{ url_for('uploaded_file', filename=post.image_name) }}"></image>
+                            <image class="card-img-top" src="{{ url_for('uploaded_file', filename=post.image_name) }}"></image>
                         {% else %}
-                            <image class="itemimage" src="{{ url_for('uploaded_file', filename='eagle.jpg') }}"></image>
+                            <image class="card-img-top" src="{{ url_for('uploaded_file', filename='eagle.jpg') }}"></image>
                         {% endif %}
+                        <p class="card-text text-center m-2">{{ post.title }}</p>
+                        <p class="card-text m-2"><b>{{ post.price }}원</b></p>
+                        <p class="card-text m-2">{{ post.address }}</p>
+                        <p class="card-text m-2">{{ post.author.username }} 님</p>
+                        <button class="btn btn-outline-primary m-2" onclick="deleteButtonEvent" data-id="{{ post.id }}">삭제하기</button>
                     </div>
-                    <div class="title">{{ post.title }}</div>
-                    <div class="price"><b>{{ post.price }}원</b></div>
-                    <div class="address">{{ post.address }}</div>
-                    <div class="user">{{ post.author.username }} 님</div>
-                    <button onclick="deleteButtonEvent" data-id="{{ post.id }}">삭제하기</button>
                 </div>
             {% endfor %}
         </div>
