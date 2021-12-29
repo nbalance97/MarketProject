@@ -1,23 +1,16 @@
 import json
 
-from flask import Flask, render_template, send_from_directory, request
-from flask_sqlalchemy import SQLAlchemy
-
-
-app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///Market.sqlite3'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
-db = SQLAlchemy(app)
-db.metadata.clear()
+from flask import render_template, send_from_directory, request
+from config import app, db
+from Model import Post
 
 @app.route('/')
 def index():
-    from Model import Post
-    return render_template('itemlist.html', posts=Post.query.all())
+    posts = Post.query.all()
+    return render_template('itemlist.html', posts=posts)
 
 @app.route('/create', methods=['GET', 'POST'])
 def item_create():
-    from Model import Post
     if request.method == 'POST':
         title = request.form['title']
         price = request.form['price']
@@ -38,16 +31,11 @@ def item_create():
 
 @app.route('/item/<int:itemnumber>', methods=['GET', 'DELETE', 'UPDATE'])
 def item_detail(itemnumber):
-    from Model import Post
     target_post = Post.query.get(itemnumber)
-
     if request.method == 'DELETE':
         db.session.delete(target_post)
         db.session.commit()
         return json.dumps({'success':True}), 200, {'ContentType': 'application/json'}
-
-        
-
 
 
 @app.route('/uploads/<filename>')
