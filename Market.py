@@ -32,6 +32,8 @@ def item_create():
 @app.route('/item/<int:itemnumber>', methods=['GET', 'DELETE', 'UPDATE'])
 def item_detail(itemnumber):
     target_post = Post.query.get(itemnumber)
+    if request.method == 'GET':
+        return render_template('itemdetail.html', post=target_post)
     if request.method == 'DELETE':
         db.session.delete(target_post)
         db.session.commit()
