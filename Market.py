@@ -38,7 +38,7 @@ def item_create():
         price = request.form['price']
         address = request.form['address']
         contents = request.form['contents']
-        user_id = 1
+        user_id = current_user.id
         db.session.add(Post(
             title=title, 
             price=int(price), 
@@ -57,6 +57,8 @@ def item_detail(itemnumber):
     if request.method == 'GET':
         return render_template('itemdetail.html', post=target_post)
     if request.method == 'DELETE':
+        if target_post.author != current_user:
+            return json.dumps({'success':False}), 401, {'ContentType': 'application/json'}
         db.session.delete(target_post)
         db.session.commit()
         return json.dumps({'success':True}), 200, {'ContentType': 'application/json'}
