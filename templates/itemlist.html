@@ -23,15 +23,17 @@
                 <div class="card m-2" style="width: 20rem;">
                     <div class="card-body">
                         {% if post.image_name %}
-                            <image class="card-img-top" src="{{ url_for('uploaded_file', filename=post.image_name) }}"></image>
+                            <a href="{{ url_for('item_detail', itemnumber=post.id) }}"><image class="card-img-top" src="{{ url_for('uploaded_file', filename=post.image_name) }}"></image></a>
                         {% else %}
-                            <image class="card-img-top" src="{{ url_for('uploaded_file', filename='eagle.jpg') }}"></image>
+                            <a href="{{ url_for('item_detail', itemnumber=post.id) }}"><image class="card-img-top" src="{{ url_for('uploaded_file', filename='eagle.jpg') }}"></image></a>
                         {% endif %}
                         <p class="card-text text-center m-2">{{ post.title }}</p>
                         <p class="card-text m-2"><b>{{ post.price }}원</b></p>
                         <p class="card-text m-2">{{ post.address }}</p>
                         <p class="card-text m-2">{{ post.author.username }} 님</p>
-                        <button class="btn btn-outline-primary m-2" onclick="deleteButtonEvent(this);" data-id="{{ post.id }}">삭제하기</button>
+                        {% if post.author == current_user %}
+                            <button class="btn btn-outline-primary m-2" onclick="deleteButtonEvent(this);" data-id="{{ post.id }}">삭제하기</button>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
