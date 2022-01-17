@@ -7,7 +7,7 @@
     </form>
     <div class="d-inline-flex">
       {% if current_user.is_authenticated %}
-        {{ current_user.username }} 님 안녕하세요.  
+        <a href="{{ url_for('logout') }}">{{ current_user.username }} 님 안녕하세요.</a>  
       {% else %}
         <a class="btn btn-outline-primary float-right" href="{{ url_for('login') }}">로그인</a>
       {% endif %}

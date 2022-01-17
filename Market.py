@@ -1,7 +1,7 @@
 import json
 
 from flask import render_template, send_from_directory, request, redirect, url_for
-from flask_login import login_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from config import app, db, login_manager
 from Model import Post, User
 
@@ -32,6 +32,7 @@ def index():
     return render_template('itemlist.html', posts=posts)
 
 @app.route('/create', methods=['GET', 'POST'])
+@login_required
 def item_create():
     if request.method == 'POST':
         title = request.form['title']
@@ -74,6 +75,12 @@ def login():
             login_user(user)
             return redirect(url_for('index'))
     return render_template('login.html')
+
+@app.route('/logout', methods=['GET'])
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
 
 @app.route('/search', methods=['GET'])
 def search():
