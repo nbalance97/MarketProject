@@ -75,6 +75,12 @@ def login():
             return redirect(url_for('index'))
     return render_template('login.html')
 
+@app.route('/search', methods=['GET'])
+def search():
+    query = request.args.get('query', '')
+    return render_template('itemsearchresult.html', posts=Post.query.filter(Post.title.contains(query)).all())
+
+
 @app.route('/uploads/<filename>')
 def uploaded_file(filename):
     return send_from_directory('uploaded', filename)
